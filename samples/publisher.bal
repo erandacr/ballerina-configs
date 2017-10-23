@@ -3,22 +3,22 @@ import ballerina.net.jms;
 @jms:configuration {
     initialContextFactory:"org.apache.activemq.jndi.ActiveMQInitialContextFactory",
     providerUrl:"tcp://localhost:61616",
-    connectionFactoryType:"queue",
     connectionFactoryName:"QueueConnectionFactory",
     destination:"MyQueue",
+    connectionFactoryType:jms:TYPE_QUEUE,
     acknowledgementMode:jms:AUTO_ACKNOWLEDGE
 }
 service<jms> jmsService {
     resource onMessage (jms:JMSMessage request) {
         //Process the message
 	    jms:ClientConnector jmsEP;
-        map properties = {  "initialContextFactory":"org.apache.activemq.jndi.ActiveMQInitialContextFactory",
-                            "providerUrl":"tcp://localhost:61616",
-                            "connectionFactoryName":"QueueConnectionFactory",
-                            "connectionFactoryType":"queue",
-                            "connectionCount":"4",
-                            "sessionCount":"7"
-                         };
+        map properties = {   "initialContextFactory":"org.apache.activemq.jndi.ActiveMQInitialContextFactory",
+                             "providerUrl":"tcp://localhost:61616",
+                             "connectionFactoryName":"QueueConnectionFactory",
+                             "connectionCount":"4",
+                             "sessionCount":"7",
+                             "connectionFactoryType":jms:TYPE_QUEUE
+    };
 
         jmsEP = create jms:ClientConnector(properties);
         jms:JMSMessage message2 = jms:createTextMessage(jmsEP);

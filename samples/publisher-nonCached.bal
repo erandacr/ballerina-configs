@@ -3,9 +3,9 @@ import ballerina.net.jms;
 @jms:configuration {
     initialContextFactory:"org.apache.activemq.jndi.ActiveMQInitialContextFactory",
     providerUrl:"tcp://localhost:61616",
-    connectionFactoryType:"queue",
     connectionFactoryName:"QueueConnectionFactory",
-    destination:"MyQueue"
+    destination:"MyQueue",
+    connectionFactoryType:jms:TYPE_QUEUE
 }
 service<jms> jmsService {
     resource onMessage (jms:JMSMessage request) {
@@ -13,7 +13,7 @@ service<jms> jmsService {
         map properties = {"initialContextFactory":"org.apache.activemq.jndi.ActiveMQInitialContextFactory",
                              "providerUrl":"tcp://localhost:61616",
                              "connectionFactoryName":"QueueConnectionFactory",
-                             "connectionFactoryType":"queue",
+                             "connectionFactoryType":jms:TYPE_QUEUE,
                              "clientCaching":"false"
                          };
 

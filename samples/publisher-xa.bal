@@ -3,9 +3,9 @@ import ballerina.net.jms;
 @jms:configuration {
     initialContextFactory:"org.apache.activemq.jndi.ActiveMQInitialContextFactory",
     providerUrl:"tcp://localhost:61616",
-    connectionFactoryType:"queue",
     connectionFactoryName:"QueueConnectionFactory",
     destination:"MyQueue",
+    connectionFactoryType:jms:TYPE_QUEUE,
     acknowledgementMode:jms:AUTO_ACKNOWLEDGE
 }
 service<jms> jmsService {

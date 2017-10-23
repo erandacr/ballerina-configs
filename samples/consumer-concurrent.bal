@@ -4,10 +4,10 @@ import ballerina.lang.system;
 @jms:configuration {
     initialContextFactory:"org.apache.activemq.jndi.ActiveMQInitialContextFactory",
     providerUrl:"tcp://localhost:61616",
-    connectionFactoryType:"queue",
     connectionFactoryName:"QueueConnectionFactory",
     destination:"MyQueue",
-    concurrentConsumers:"15"
+    concurrentConsumers:"15",
+    connectionFactoryType:jms:TYPE_QUEUE
 }
 service<jms> jmsService {
     resource onMessage (jms:JMSMessage request) {

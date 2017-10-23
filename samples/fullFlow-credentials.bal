@@ -4,11 +4,11 @@ import ballerina.lang.system;
 @jms:configuration {
     initialContextFactory:"org.apache.activemq.jndi.ActiveMQInitialContextFactory",
     providerUrl:"tcp://localhost:61616",
-    connectionFactoryType:"queue",
     connectionFactoryName:"QueueConnectionFactory",
     destination:"MyQueue",
     connectionUsername:"user",
-    connectionPassword:"password"
+    connectionPassword:"password",
+    connectionFactoryType:jms:TYPE_QUEUE
 }
 service<jms> jmsService {
     resource onMessage (jms:JMSMessage request) {
@@ -16,10 +16,10 @@ service<jms> jmsService {
         map properties = {"initialContextFactory":"org.apache.activemq.jndi.ActiveMQInitialContextFactory",
                              "providerUrl":"tcp://localhost:61616",
                              "connectionFactoryName":"QueueConnectionFactory",
-                             "connectionFactoryType":"queue",
                              "connectionUsername":"user",
-                             "connectionPassword":"password"
-                         };
+                             "connectionPassword":"password",
+                             "connectionFactoryType":jms:TYPE_QUEUE
+        };
 
         system:println(request.getTextMessageContent());
 
