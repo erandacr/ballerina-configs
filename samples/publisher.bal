@@ -18,7 +18,7 @@ service<jms> jmsService {
                              "connectionCount":"4",
                              "sessionCount":"7",
                              "connectionFactoryType":jms:TYPE_QUEUE
-    };
+        };
 
         jmsEP = create jms:ClientConnector(properties);
         jms:JMSMessage message2 = jms:createTextMessage(jmsEP);

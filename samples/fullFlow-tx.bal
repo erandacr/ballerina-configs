@@ -16,7 +16,8 @@ service<jms> jmsService {
                              "providerUrl":"tcp://localhost:61616",
                              "connectionFactoryName":"QueueConnectionFactory",
                              "connectionFactoryType":jms:TYPE_QUEUE,
-                             "acknowledgementMode":jms:SESSION_TRANSACTED};
+                             "acknowledgementMode":jms:SESSION_TRANSACTED
+                         };
 
         jmsEP = create jms:ClientConnector(properties);
         jms:JMSMessage message2 = jms:createTextMessage(jmsEP);

@@ -11,11 +11,11 @@ service<jms> jmsService {
     resource onMessage (jms:JMSMessage request) {
         jms:ClientConnector jmsEP;
         map properties = {"initialContextFactory":"org.apache.activemq.jndi.ActiveMQInitialContextFactory",
-                             "providerUrl":"tcp://localhost:61616",
-                             "connectionFactoryName":"QueueConnectionFactory",
-                             "connectionFactoryType":jms:TYPE_QUEUE,
-                             "clientCaching":"false"
-                         };
+                            "providerUrl":"tcp://localhost:61616",
+                            "connectionFactoryName":"QueueConnectionFactory",
+                            "clientCaching":"false",
+                            "connectionFactoryType":jms:TYPE_QUEUE
+        };
 
         jmsEP = create jms:ClientConnector(properties);
         jms:JMSMessage message2 = jms:createTextMessage(jmsEP);

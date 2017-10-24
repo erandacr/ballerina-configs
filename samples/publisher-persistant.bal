@@ -13,7 +13,7 @@ service<jms> jmsService {
         map properties = {"initialContextFactory":"org.apache.activemq.jndi.ActiveMQInitialContextFactory",
                              "providerUrl":"tcp://localhost:61616",
                              "connectionFactoryName":"QueueConnectionFactory",
-                             "connectionFactoryType":jms:TYPE_QUEUE,
+                             "connectionFactoryType":jms:TYPE_QUEUE
                          };
 
         jmsEP = create jms:ClientConnector(properties);
